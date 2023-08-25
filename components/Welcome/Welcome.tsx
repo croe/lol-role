@@ -6,7 +6,7 @@ import { useRef } from 'react'
 
 const num = [0, 1, 2, 3, 4]
 const _sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
-const copyToClipboard = async (resultText) => {
+const copyToClipboard = async (resultText: string) => {
   await global.navigator.clipboard.writeText(resultText)
 }
 const arrayShuffle = (array: number[]) => {
@@ -28,11 +28,11 @@ export const Welcome = () => {
 
   const handleSubmit = async () => {
     for(let i = 0; i < 10; i++) {
-      const temp1 = n1ref?.current.value || ""
-      const temp2 = n2ref?.current.value || ""
-      const temp3 = n3ref?.current.value || ""
-      const temp4 = n4ref?.current.value || ""
-      const temp5 = n5ref?.current.value || ""
+      const temp1 = n1ref?.current.value || ''
+      const temp2 = n2ref?.current.value || ''
+      const temp3 = n3ref?.current.value || ''
+      const temp4 = n4ref?.current.value || ''
+      const temp5 = n5ref?.current.value || ''
       const array = [temp1, temp2, temp3, temp4, temp5]
       const result = arrayShuffle(num)
       n1ref.current.value = result[0] !== undefined && array[result[0]]
