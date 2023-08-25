@@ -6,6 +6,9 @@ import { useRef } from 'react'
 
 const num = [0, 1, 2, 3, 4]
 const _sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
+const copyToClipboard = async (resultText) => {
+  await global.navigator.clipboard.writeText(resultText)
+}
 const arrayShuffle = (array: number[]) => {
   for(let i = array.length - 1; 0 < i; i--) {
     const r = Math.floor(Math.random() * (i + 1))
@@ -25,16 +28,13 @@ export const Welcome = () => {
 
   const handleSubmit = async () => {
     for(let i = 0; i < 10; i++) {
-      const temp1 = n1ref?.current.value || 0
-      const temp2 = n2ref?.current.value || 0
-      const temp3 = n3ref?.current.value || 0
-      const temp4 = n4ref?.current.value || 0
-      const temp5 = n5ref?.current.value || 0
+      const temp1 = n1ref?.current.value || ""
+      const temp2 = n2ref?.current.value || ""
+      const temp3 = n3ref?.current.value || ""
+      const temp4 = n4ref?.current.value || ""
+      const temp5 = n5ref?.current.value || ""
       const array = [temp1, temp2, temp3, temp4, temp5]
-      // const result = arrayShuffle(role)
       const result = arrayShuffle(num)
-      // console.log(result)
-      // console.log(result)
       n1ref.current.value = result[0] !== undefined && array[result[0]]
       n2ref.current.value = result[1] !== undefined && array[result[1]]
       n3ref.current.value = result[2] !== undefined && array[result[2]]
@@ -42,6 +42,15 @@ export const Welcome = () => {
       n5ref.current.value = result[4] !== undefined && array[result[4]]
       await _sleep(50)
     }
+  }
+  const handleCopy = async () => {
+    const result = `TOP: ${n1ref.current.value}
+JUNGLE: ${n2ref.current.value}
+MID: ${n3ref.current.value}
+BOTTOM: ${n4ref.current.value}
+SUPPORT: ${n5ref.current.value}
+    `
+    await copyToClipboard(result)
   }
   return (
     <>
@@ -92,6 +101,7 @@ export const Welcome = () => {
           </Grid>
         </div>
         <div className={classes.button}>
+          <Button color="blue" onClick={handleCopy}>Copy</Button>
           <Button color="red" onClick={handleSubmit}>Role!</Button>
         </div>
       </div>
