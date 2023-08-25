@@ -1,0 +1,8 @@
+.text {
+  color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+}
+
+.wrap {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+}
