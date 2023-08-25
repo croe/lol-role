@@ -5,8 +5,8 @@ import classes from './Welcome.module.css'
 import { useRef } from 'react'
 
 const num = [0, 1, 2, 3, 4]
-const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
-const arrayShuffle = (array) => {
+const _sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
+const arrayShuffle = (array: number[]) => {
   for(let i = array.length - 1; 0 < i; i--) {
     const r = Math.floor(Math.random() * (i + 1))
     const tmp = array[i]
@@ -17,19 +17,19 @@ const arrayShuffle = (array) => {
 }
 
 export const Welcome = () => {
-  const n1ref = useRef(null)
-  const n2ref = useRef(null)
-  const n3ref = useRef(null)
-  const n4ref = useRef(null)
-  const n5ref = useRef(null)
+  const n1ref:any = useRef(null)
+  const n2ref:any = useRef(null)
+  const n3ref:any = useRef(null)
+  const n4ref:any = useRef(null)
+  const n5ref:any = useRef(null)
 
   const handleSubmit = async () => {
     for(let i = 0; i < 10; i++) {
-      const temp1 = n1ref.current.value
-      const temp2 = n2ref.current.value
-      const temp3 = n3ref.current.value
-      const temp4 = n4ref.current.value
-      const temp5 = n5ref.current.value
+      const temp1 = n1ref?.current.value || 0
+      const temp2 = n2ref?.current.value || 0
+      const temp3 = n3ref?.current.value || 0
+      const temp4 = n4ref?.current.value || 0
+      const temp5 = n5ref?.current.value || 0
       const array = [temp1, temp2, temp3, temp4, temp5]
       // const result = arrayShuffle(role)
       const result = arrayShuffle(num)
